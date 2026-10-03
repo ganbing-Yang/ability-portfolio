@@ -1,0 +1,175 @@
+{
+  "dataset": "CIFAR-10 cat/dog subset",
+  "source_url": "https://www.cs.toronto.edu/~kriz/cifar.html",
+  "seed": 42,
+  "labels": {
+    "cat": 0,
+    "dog": 1
+  },
+  "split": {
+    "train": 8000,
+    "validation": 2000,
+    "test": 2000
+  },
+  "counts": {
+    "train": [
+      4000,
+      4000
+    ],
+    "validation": [
+      1000,
+      1000
+    ],
+    "test": [
+      1000,
+      1000
+    ]
+  },
+  "selected_model": "CNN",
+  "selection_metric": "minimum validation binary cross-entropy",
+  "models": {
+    "MLP": {
+      "validation": {
+        "accuracy": 0.5745,
+        "macro_f1": 0.5740219461290433,
+        "cat_precision": 0.579849946409432,
+        "cat_recall": 0.541,
+        "dog_precision": 0.569821930646673,
+        "dog_recall": 0.608,
+        "confusion_matrix": [
+          [
+            541,
+            459
+          ],
+          [
+            392,
+            608
+          ]
+        ]
+      },
+      "best_epoch": 11,
+      "epochs_run": 16,
+      "parameters": 393473,
+      "training_seconds": 4.598434375000124,
+      "test": {
+        "accuracy": 0.598,
+        "macro_f1": 0.5971100160254001,
+        "cat_precision": 0.608167770419426,
+        "cat_recall": 0.551,
+        "dog_precision": 0.5895795246800731,
+        "dog_recall": 0.645,
+        "confusion_matrix": [
+          [
+            551,
+            449
+          ],
+          [
+            355,
+            645
+          ]
+        ]
+      }
+    },
+    "CNN": {
+      "validation": {
+        "accuracy": 0.745,
+        "macro_f1": 0.7449347032840408,
+        "cat_precision": 0.753099173553719,
+        "cat_recall": 0.729,
+        "dog_precision": 0.7374031007751938,
+        "dog_recall": 0.761,
+        "confusion_matrix": [
+          [
+            729,
+            271
+          ],
+          [
+            239,
+            761
+          ]
+        ]
+      },
+      "best_epoch": 20,
+      "epochs_run": 20,
+      "parameters": 89585,
+      "training_seconds": 55.49088713900005,
+      "test": {
+        "accuracy": 0.758,
+        "macro_f1": 0.7577519379844961,
+        "cat_precision": 0.7756410256410257,
+        "cat_recall": 0.726,
+        "dog_precision": 0.7424812030075187,
+        "dog_recall": 0.79,
+        "confusion_matrix": [
+          [
+            726,
+            274
+          ],
+          [
+            210,
+            790
+          ]
+        ]
+      }
+    },
+    "CNN_aug": {
+      "validation": {
+        "accuracy": 0.7435,
+        "macro_f1": 0.7431763379799392,
+        "cat_precision": 0.7621097954790097,
+        "cat_recall": 0.708,
+        "dog_precision": 0.7273576097105509,
+        "dog_recall": 0.779,
+        "confusion_matrix": [
+          [
+            708,
+            292
+          ],
+          [
+            221,
+            779
+          ]
+        ]
+      },
+      "best_epoch": 20,
+      "epochs_run": 20,
+      "parameters": 89585,
+      "training_seconds": 62.80333002599991,
+      "test": {
+        "accuracy": 0.743,
+        "macro_f1": 0.7427198218860338,
+        "cat_precision": 0.7601713062098501,
+        "cat_recall": 0.71,
+        "dog_precision": 0.7279549718574109,
+        "dog_recall": 0.776,
+        "confusion_matrix": [
+          [
+            710,
+            290
+          ],
+          [
+            224,
+            776
+          ]
+        ]
+      }
+    }
+  },
+  "wrong_count": 484,
+  "worst_error_indices": [
+    508,
+    1176,
+    895,
+    1313,
+    1571,
+    487,
+    374,
+    1580,
+    1828,
+    1818,
+    1578,
+    1403
+  ],
+  "warning": "Scores are not calibrated probabilities. Only cat/dog images evaluated; no out-of-distribution detection.",
+  "tensorflow_version": "2.21.0"
+}

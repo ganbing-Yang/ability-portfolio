@@ -1,0 +1,15 @@
+{
+  "image": "hand.jpg",
+  "image_size": [
+    358,
+    376
+  ],
+  "hands": [
+    {
+      "thumb_index_pixels": 112.86696063074245,
+      "wrist_middle_base_pixels": 106.41306640211104,
+      "tip_distance_over_palm": 1.0606494526174408
+    }
+  ],
+  "scope": "Static-image measurement only; no calibrated gesture threshold or live interaction."
+}

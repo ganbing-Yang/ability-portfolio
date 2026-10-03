@@ -1,0 +1,6 @@
+{
+  "bus.jpg": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/assets/bus.jpg",
+  "hand.jpg": "https://storage.googleapis.com/mediapipe-assets/pointing_up.jpg",
+  "pose.jpg": "https://storage.googleapis.com/mediapipe-assets/pose.jpg",
+  "face.jpg": "Matplotlib sample_data/grace_hopper.jpg (US Navy photograph)"
+}

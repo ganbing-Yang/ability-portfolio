@@ -1,0 +1,22 @@
+{
+  "test_images": 2000,
+  "max_score_difference": 1.1102230246251565e-16,
+  "test_metrics": {
+    "accuracy": 0.758,
+    "macro_f1": 0.7577519379844961,
+    "cat_precision": 0.7756410256410257,
+    "cat_recall": 0.726,
+    "dog_precision": 0.7424812030075187,
+    "dog_recall": 0.79,
+    "confusion_matrix": [
+      [
+        726,
+        274
+      ],
+      [
+        210,
+        790
+      ]
+    ]
+  }
+}

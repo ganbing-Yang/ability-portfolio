@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+*.keras
+*.h5
+*.task
+results_reproduced/
