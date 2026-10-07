@@ -1,27 +1,36 @@
-# 猫狗分类：MLP、CNN与数据增强对照
+# 猫狗二分类
 
-基于教师CIFAR10卷积例题，筛选猫狗并改为二分类。彩色32×32图片共12000张，划分8000训练、2000验证、2000官方测试。
+## 任务与方法
+
+基于教师 CIFAR-10 卷积例题，将猫与狗筛选为二分类。12000 张 32×32 彩色图片，分为 8000 训练、2000 验证及 2000 官方测试，类别平衡。比较 MLP、CNN 与增强 CNN，按验证集最小二元交叉熵选模型，固定 0.5 分类阈值。
+
+## 结果
 
 | 模型 | 测试准确率 | 参数量 |
 | --- | --- | --- |
 | MLP | 59.80% | 393473 |
 | CNN | 75.80% | 89585 |
-| 增强CNN | 74.30% | 89585 |
+| 增强 CNN | 74.30% | 89585 |
 
-增强在这次固定划分和训练预算下没有改善。普通CNN猫召回72.6%、狗召回79.0%；错例和混淆矩阵保留。
+普通 CNN 的猫召回率 72.6%、狗召回率 79.0%。本次增强未提升结果，单次实验不足以判断其普遍效果。模型只区分猫狗，没有未知类别检测与概率校准。
 
-![对照结果](results/figures/02_metrics.png)
+![模型评价对照](results/figures/02_metrics.png)
 
-## 运行
+[运行记录](猫狗分类_运行记录.ipynb) · [完整评价记录](results/summary.json) · [错例分析图](results/figures/03_wrong_examples.png)
+
+## 项目输出
+
+- [catdog_case.py](catdog_case.py)、[predict.py](predict.py)：训练、对照评价与单图推理接口。
+- [猫狗分类_运行记录.ipynb](猫狗分类_运行记录.ipynb)：已有运行记录。
+- [results/](results/)：固定划分、训练历史、测试预测、混淆矩阵与错例图。
+- [教师 CIFAR-10 例题](../../references/cifar10_cnn_teaching_case.ipynb)：改编来源。
+
+## 复现
 
 ```bash
 python -m pip install -r requirements.txt
 python catdog_case.py --output results_reproduced
-python predict.py --image example.jpg --model results_reproduced/catdog_selected.keras
+python predict.py --image example_cat.png --model results_reproduced/catdog_selected.keras
 ```
 
-首次训练需要下载官方CIFAR10数据。保存的二进制模型不纳入这个精简仓库，可以重新训练生成，或使用此前完整代码包的results/catdog_selected.keras。训练脚本基于课堂代码改编，增加固定划分、MLP对照、数据增强与评估，使用AI辅助完成。
-
-先读load_data、build_model和metrics；输出Sigmoid分数，以0.5为阈值。模型没有未知类别识别或概率校准，其他图片也可能被强制二选一。打开Notebook浏览已保存结果；本次整理不重新训练。
-
-学习练习：手算猫召回率，解释两张错例，再只改一个增强设置并保存自己的实验记录。
+首次训练需下载[官方 CIFAR-10 数据](https://www.cs.toronto.edu/~kriz/cifar.html)。本仓库不附训练权重，重新训练可生成权重供推理使用。代码改编、对照实现与运行验证使用 AI 辅助。

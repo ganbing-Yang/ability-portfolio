@@ -1,25 +1,34 @@
-# Walmart周销售额预测
+# Walmart 周销售额预测
 
-从45家门店的6435条周记录出发，比较门店编码方式与线性回归，检查简单模型是否真的有效。
+## 任务与方法
+
+基于 45 家门店、143 周、6435 条销售记录，预测门店周销售额。按时间划分 85 周训练、29 周验证、29 周测试；标准化只拟合训练集。比较门店编号直接输入、门店独热编码及门店与月份编码三种线性方案，使用 NumPy 实现均方误差梯度下降，按验证结果选择模型。
 
 ## 结果
 
-| 方法 | 测试R² | 测试MAE | 测试RMSE |
+| 方法 | 测试 R² | MAE | RMSE |
 | --- | --- | --- | --- |
-| 门店与月份编码线性回归 | 0.9529 | 87030.32 | 115755.26 |
-| 每家门店的训练期均值 | 0.9587 | 74628.69 | 108420.29 |
+| 门店 + 月份编码线性模型 | 0.9529 | 87030.32 | 115755.26 |
+| 训练期各门店均值基线 | 0.9587 | 74628.69 | 108420.29 |
 
-模型未超过基线。保留这个结果，重点分析门店差异、时间划分和误差。指标来自results/summary.json，未重新训练。
+最终模型未超过均值基线。总体 R² 很大程度上反映门店规模差异，不能替代单店波动与误差检查。模型系数仅描述统计关系。
 
-## 方法与运行
+![测试集真实值与预测值](results/figures/04_actual_prediction.png)
 
-按周划分85周训练、29周验证、29周测试。标准化只拟合训练集。NumPy实现MSE梯度下降，验证集选模型，最后报告测试指标。
+[研究报告](研究报告.md) · [Notebook](Walmart_线性回归案例.ipynb) · [完整评价记录](results/summary.json)
+
+## 项目输出
+
+- [walmart_analysis.py](walmart_analysis.py)：数据处理、特征设计、训练与评价。
+- [Walmart_线性回归案例.ipynb](Walmart_线性回归案例.ipynb)、[研究报告.md](研究报告.md)：方法与图表分析。
+- [results/](results/)：模型参数、预测 CSV、损失记录、图表与汇总。
+- [Walmart_Sales.csv](Walmart_Sales.csv)：原始数据。
+
+## 复现
 
 ```bash
 python -m pip install -r requirements.txt
 python walmart_analysis.py --output results_reproduced
 ```
 
-打开[研究报告](研究报告.md)或Notebook查看已有结果。先读make_features、train_linear与scores。原始数据为用户提供的Walmart_Sales.csv，数据集来源说明在脚本中。
-
-学习练习：独立用预测CSV核对MAE；解释模型为什么未超过均值基线。结果不支持因果推断，也不保证未知未来周的预测效果。
+数据与题目来自课程提供的 Walmart_Sales.csv，题面注明 Kaggle mikhail1681/Walmart Sales。实现与运行验证使用 AI 辅助，当前数值对应仓库保存的实验记录。
